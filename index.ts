@@ -1,20 +1,19 @@
-import express, { Express, Request, Response } from "express";
 import dotenv from 'dotenv';
+import server from './src/server';
+import { logError, logSuccess } from './src/utils/logger';
 
-// Configuration for .env file
+// * Configuration .env file
 dotenv.config();
 
-// Create Express APP
-const app: Express = express();
-const port: number | string = process.env.PORT || 8000;
+const port = process.env.PORT || 8000;
 
-// Define the first Route to our APP
-app.get('/', (req: Request, res: Response) => {
-    // Send a response
-    res.send('Express APP [WORKING]');
+// * Execute SERVER
+server.listen(port, () => {
+    logSuccess(`[SERVER ON]: Running server at http://localhost:${port}/api`);
+
 });
 
-// Execute APP and Listen Requests
-app.listen(port, () => {
-    console.log(`Express server executing correctly at  http://localhost:${port}`);
+// * Control SERVER ERROR
+server.on('error', (error) => {
+    logError(`[SERVER ERROR]: ${error}`);
 });
