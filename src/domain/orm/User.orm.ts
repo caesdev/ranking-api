@@ -6,10 +6,9 @@ import { logError, logSuccess } from "../../utils/logger";
 /**
  * Method to obatin all Users from Collection "Users" in Mongo Server 
  */
-export const getAllUsersByServerId = async (): Promise<any[] | undefined> => {
+export const getAllUsersByServerId = async (server_id: number): Promise<any[] | undefined> => {
     try {
         let userModel = userEntity();
-        let server_id = 1026630141650149400;
         return await userModel.find({ server: server_id }, { isDelete: false });
     } catch (error) {
         logError(`[ORM ERROR]: Getting all users: ${error}`);
