@@ -5,6 +5,5 @@ export interface IHelloController {
 }
 
 export interface IUserController {
-    // Read all users from database "StareBot"
     getUsers(): Promise<any>
 }

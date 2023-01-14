@@ -36,7 +36,6 @@ server.use(
 // From this point on over: http://localhost:8000/api/
 server.use('/api', rootRouter);
 
-// Static Server
 server.use(express.static('public'));
 
 // TODO Mongoose Connection
@@ -47,12 +46,10 @@ mongoose.connect(`mongodb+srv://caesdev:${process.env.PASS}@cluster0.8lkkc60.mon
 server.use(helmet());
 server.use(cors());
 
-// Content Type:
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
 server.use(express.json({ limit: '50mb' }));
 
 // * Redirection Config
-// http://localhost:8000/ --> http://localhost:8000/api/
 server.get('/', (req: Request, res: Response) => {
     res.redirect('/api');
 });

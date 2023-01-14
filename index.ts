@@ -17,5 +17,3 @@ server.listen(port, () => {
 server.on('error', (error) => {
     logError(`[SERVER ERROR]: ${error}`);
 });
-
-// "controllerPathGlobs": "src/**/*Controller.ts",
